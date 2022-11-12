@@ -1,7 +1,0 @@
-Sandbox_EN = {
-    Sandbox_FitnessIsALifestyle = "Fitness Is A Lifestyle!",
-    Sandbox_FitnessIsALifestyle_Hardcore = "Enable Hardcore",
-    Sandbox_FitnessIsALifestyle_Hardcore_tooltip = "If ticked, the XP multiplier will be given in an exponential way, basen on the regularity of the exercise. If not it will give it in a linear way (Easy way)",
-    Sandbox_FitnessIsALifestyle_XPMultiplier = "XPMultiplier",
-    Sandbox_FitnessIsALifestyle_XPMultiplier_tooltip = "This will be the MAX XP Multiplier based on the regularity of the exercise. Each level adds this number to that max XP multiplier, meaning that if set to 3.0, at level 0 you get a max XP multiplier of 3, and at level 10, you get a max XP multiplier of 30. [Defualt=3.0, Min=1.0 (No multiplier), Max=100.0]",
-}
