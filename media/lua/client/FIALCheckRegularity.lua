@@ -1,4 +1,4 @@
-local function CheckRegularity ()
+/*local function CheckRegularity ()
 
 	if not itsExercise then
 
@@ -22,4 +22,4 @@ local function CheckRegularity ()
 	end
 end
 
-Events.EveryTenMinutes.Add(CheckRegularity)
+Events.EveryTenMinutes.Add(CheckRegularity)*/

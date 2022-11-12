@@ -14,7 +14,7 @@ FitnessLvl = nil
 StrengthPerk = nil
 FitnessPerk = nil
 
-function calcMulExe(character, perkType, perkLvl, PercRegNum)
+/*function calcMulExe(character, perkType, perkLvl, PercRegNum)
 
 	if SandboxVars.FitnessIsALifestyle.Hardcore then
 		local mulXP = math.floor(100*(((100^((PercRegNum/100)+0.002161)-1)*(SandboxVars.FitnessIsALifestyle.XPMultiplier*(perkLvl+1)))/100))/100 + 1
@@ -24,7 +24,7 @@ function calcMulExe(character, perkType, perkLvl, PercRegNum)
 		character:getXp():addXpMultiplier(perkType,mulXP,perkLvl,10)
 	end
 
-end
+end*/
 
 function ISFitnessAction:update()
 	default_update(self)
@@ -35,8 +35,9 @@ function ISFitnessAction:update()
 	FitnessLvl = player:getPerkLevel(Perks.Fitness)
 	StrengthPerk = Perks.Strength
 	FitnessPerk = Perks.Fitness
+	print('Hello')
 
-	if player then	
+	/*if player then	
 		
 		regNum = math.ceil(player:getFitness():getRegularity(exerciseName)*100)/100
 
@@ -50,7 +51,7 @@ function ISFitnessAction:update()
 			calcMulExe(player, StrengthPerk, StrengthLvl, saveregNum)
 			calcMulExe(player, FitnessPerk, FitnessLvl, saveregNum)
 		end
-	end
+	end*/
 end
 
 function ISFitnessAction:stop()	
@@ -60,7 +61,7 @@ function ISFitnessAction:stop()
 	StrengthPerk = Perks.Strength
 	FitnessPerk = Perks.fitness
 
-	for k,v in pairs(FitnessExercises.exercisesType) do			
+	/*for k,v in pairs(FitnessExercises.exercisesType) do			
 		count = count + 1
 		sumAverage = (math.ceil((sumAverage + player:getFitness():getRegularity(k))*100))/100
 	end
@@ -68,7 +69,7 @@ function ISFitnessAction:stop()
 	totAverage = math.ceil((sumAverage/count)*100)/100
 
 	calcMulExe(player, StrengthPerk, StrengthLvl, totAverage)
-	calcMulExe(player, FitnessPerk, FitnessLvl, totAverage)
+	calcMulExe(player, FitnessPerk, FitnessLvl, totAverage)*/
 
 	count = 0
 	sumAverage = 0
