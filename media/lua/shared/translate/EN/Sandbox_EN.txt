@@ -1,7 +1,58 @@
 Sandbox_EN = {
-    Sandbox_FitnessIsALifestyle = "Fitness Is A Lifestyle!",
-    Sandbox_FitnessIsALifestyle_Hardcore = "Enable Hardcore",
-    Sandbox_FitnessIsALifestyle_Hardcore_tooltip = "If ticked, the XP multiplier will be given in an exponential way, basen on the regularity of the exercise. If not it will give it in a linear way (Easy way)",
-    Sandbox_FitnessIsALifestyle_XPMultiplier = "XPMultiplier",
-    Sandbox_FitnessIsALifestyle_XPMultiplier_tooltip = "This will be the MAX XP Multiplier based on the regularity of the exercise. Each level adds this number to that max XP multiplier, meaning that if set to 3.0, at level 0 you get a max XP multiplier of 3, and at level 10, you get a max XP multiplier of 30. [Defualt=3.0, Min=1.0 (No multiplier), Max=100.0]",
+
+	Sandbox_FitnessIsALifestyle = "Fitness Is A Lifestyle!",
+
+	Sandbox_FitnessIsALifestyle_Hardcore = "Enable Hardcore",
+	Sandbox_FitnessIsALifestyle_Hardcore_tooltip = "If ticked, the XP multiplier will be given in an exponential way, basen on the regularity of the exercise. If not it will give it in a linear way (Easy way)",
+
+	Sandbox_FitnessIsALifestyle_XPMultiplier = "XPMultiplier",
+	Sandbox_FitnessIsALifestyle_XPMultiplier_tooltip = "This will be the MAX XP Multiplier based on the regularity of the exercise. Each level adds this number to that max XP multiplier, meaning that if set to 3.0, at level 0 you get a max XP multiplier of 3, and at level 10, you get a max XP multiplier of 30. [Defualt=3.0, Min=1.0 (No multiplier), Max=100.0]",
+
+    Sandbox_FitnessIsALifestyle_SLM = "Enable Simple Level Multiplier",
+	Sandbox_FitnessIsALifestyle_SLM_tooltip = "If ticked, you can choose the multiplier at level 1 and level 10, the rest would be simple calculations to determine the rest. Level 5, in default would be 1.5",
+
+	Sandbox_FitnessIsALifestyle_SLM1 = "SLM Level 1",
+	Sandbox_FitnessIsALifestyle_SLM1_tooltip = "This will determine the multiplier at level 1"
+
+	Sandbox_FitnessIsALifestyle_SLM10 = "SLM Level 10",
+	Sandbox_FitnessIsALifestyle_SLM10_tooltip = "This will determine the multiplier at level 10"
+
+    Sandbox_FitnessIsALifestyle_VanillaMod = "Enable Vanilla XP Gain Modification"
+    Sandbox_FitnessIsALifestyle_VanillaMod_tooltip = "This will balance the base XP gain based on the level of either Fitness or Strength."
+
+    Sandbox_FitnessIsALifestyle_SVLM1 = "SLM Level 1",
+    Sandbox_FitnessIsALifestyle_SVLM1_tooltip = "This will determine the modifier at level 1"
+
+    Sandbox_FitnessIsALifestyle_SVLM10 = "SLM Level 10",
+    Sandbox_FitnessIsALifestyle_SVLM10_tooltip = "This will determine the modifier at level 10"
+
+	Sandbox_FitnessIsALifestyleXLvl = "Fitness Is A Lifestyle! XP Per Level",
+
+	Sandbox_FitnessIsALifestyleXLvl_XPPerLevel = "Enable XP per Level",
+	Sandbox_FitnessIsALifestyleXLvl_XPPerLevel_tooltip = "If ticked, the XP multiplier can be adjusted by level",
+	
+	Sandbox_FitnessIsALifestyleXLvl_XPLvl1 = "Multiplier at Level 1",	
+	Sandbox_FitnessIsALifestyleXLvl_XPLvl2 = "Multiplier at Level 2",	
+	Sandbox_FitnessIsALifestyleXLvl_XPLvl3 = "Multiplier at Level 3",	
+	Sandbox_FitnessIsALifestyleXLvl_XPLvl4 = "Multiplier at Level 4",	
+	Sandbox_FitnessIsALifestyleXLvl_XPLvl5 = "Multiplier at Level 5",	
+	Sandbox_FitnessIsALifestyleXLvl_XPLvl6 = "Multiplier at Level 6",	
+	Sandbox_FitnessIsALifestyleXLvl_XPLvl7 = "Multiplier at Level 7",	
+	Sandbox_FitnessIsALifestyleXLvl_XPLvl8 = "Multiplier at Level 8",	
+	Sandbox_FitnessIsALifestyleXLvl_XPLvl9 = "Multiplier at Level 9",	
+	Sandbox_FitnessIsALifestyleXLvl_XPLvl10 = "Multiplier at Level 10",
+
+	Sandbox_FitnessIsALifestyleXLvl_XPModPerLevel = "Enable Vanilla XP Modifier per Level",
+	Sandbox_FitnessIsALifestyleXLvl_XPModPerLevel_tooltip = "If ticked, the Vanilla XP modifier can be adjusted by level",
+
+    Sandbox_FitnessIsALifestyleXLvl_XPModLvl1 = "Modifier at Level 1",
+    Sandbox_FitnessIsALifestyleXLvl_XPModLvl2 = "Modifier at Level 2",
+    Sandbox_FitnessIsALifestyleXLvl_XPModLvl3 = "Modifier at Level 3",
+    Sandbox_FitnessIsALifestyleXLvl_XPModLvl4 = "Modifier at Level 4",
+    Sandbox_FitnessIsALifestyleXLvl_XPModLvl5 = "Modifier at Level 5",
+    Sandbox_FitnessIsALifestyleXLvl_XPModLvl6 = "Modifier at Level 6",
+    Sandbox_FitnessIsALifestyleXLvl_XPModLvl7 = "Modifier at Level 7",
+    Sandbox_FitnessIsALifestyleXLvl_XPModLvl8 = "Modifier at Level 8",
+    Sandbox_FitnessIsALifestyleXLvl_XPModLvl9 = "Modifier at Level 9",
+    Sandbox_FitnessIsALifestyleXLvl_XPModLvl10 = "Modifier at Level 10",
 }

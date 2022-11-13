@@ -2,12 +2,301 @@ VERSION = 1,
 
 option FitnessIsALifestyle.Hardcore
 {
-	type = boolean, default = false,
-	page = FitnessIsALifestyle, translation = FitnessIsALifestyle_Hardcore,
+	type = boolean,
+	default = false,
+
+	page = FitnessIsALifestyle,
+	translation = FitnessIsALifestyle_Hardcore,
+	valueTranslation = FitnessIsALifestyle_Hardcore,
 }
 
 option FitnessIsALifestyle.XPMultiplier
 {
-	type = double, min = 1.0, max = 100.0, default = 3.0,
-	page = FitnessIsALifestyle, translation = FitnessIsALifestyle_XPMultiplier,
+	type = double, min = 1.0,
+	max = 100.0, default = 3.0,
+
+	page = FitnessIsALifestyle,
+	translation = FitnessIsALifestyle_XPMultiplier,
+	valueTranslation = FitnessIsALifestyle_XPMultiplier,
+}
+
+option FitnessIsALifestyle.SimpleLevelMultiplier
+{
+	type = boolean,
+	default = false,
+
+	page = FitnessIsALifestyle,
+	translation = FitnessIsALifestyle_SLM,
+	valueTranslation = FitnessIsALifestyle_SLM,
+}
+
+option FitnessIsALifestyle.SLM1
+{
+	type = double, min = 1.0,
+	max = 100.0, default = 1.0,
+
+	page = FitnessIsALifestyle,
+	translation = FitnessIsALifestyle_SLM1,
+	valueTranslation = FitnessIsALifestyle_SLM1,
+}
+
+option FitnessIsALifestyle.SLM10
+{
+	type = double, min = 1.0,
+	max = 100.0, default = 30.0,
+
+	page = FitnessIsALifestyle,
+	translation = FitnessIsALifestyle_SLM10,
+	valueTranslation = FitnessIsALifestyle_SLM10,
+}
+
+
+option FitnessIsALifestyle.VanillaMod
+{
+	type = boolean,
+	default = false,
+
+	page = FitnessIsALifestyle,
+	translation = FitnessIsALifestyle_VanillaMod,
+	valueTranslation = FitnessIsALifestyle_VanillaMod,
+}
+
+option FitnessIsALifestyle.SVLM1
+{
+	type = double, min = 0.0,
+	max = 100.0, default = 0.8,
+
+	page = FitnessIsALifestyle,
+	translation = FitnessIsALifestyle_SVLM1,
+	valueTranslation = FitnessIsALifestyle_SVLM1,
+}
+
+option FitnessIsALifestyle.SVLM10
+{
+	type = double, min = 0.0,
+	max = 100.0, default = 1.2,
+
+	page = FitnessIsALifestyle,
+	translation = FitnessIsALifestyle_SVLM10,
+	valueTranslation = FitnessIsALifestyle_SVLM10,
+}
+
+option FitnessIsALifestyleXLvl.XPPerLevel
+{
+	type = boolean,
+	default = false,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPPerLevel,
+	valueTranslation = FitnessIsALifestyleXLvl_XPPerLevel,
+}
+
+option FitnessIsALifestyleXLvl.XPLvl1
+{
+	type = double, min = 1.0,
+	max = 100.0, default = 3.0,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPLvl1,
+	valueTranslation = FitnessIsALifestyleXLvl_XPLvl1,
+}
+
+option FitnessIsALifestyleXLvl.XPLvl2
+{
+	type = double, min = 1.0,
+	max = 100.0, default = 6.0,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPLvl2,
+	valueTranslation = FitnessIsALifestyleXLvl_XPLvl2,
+}
+
+option FitnessIsALifestyleXLvl.XPLvl3
+{
+	type = double, min = 1.0,
+	max = 100.0, default = 9.0,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPLvl3,
+	valueTranslation = FitnessIsALifestyleXLvl_XPLvl3,
+}
+
+option FitnessIsALifestyleXLvl.XPLvl4
+{
+	type = double, min = 1.0,
+	max = 100.0, default = 12.0,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPLvl4,
+	valueTranslation = FitnessIsALifestyleXLvl_XPLvl4,
+}
+
+option FitnessIsALifestyleXLvl.XPLvl5
+{
+	type = double, min = 1.0,
+	max = 100.0, default = 15.0,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPLvl5,
+	valueTranslation = FitnessIsALifestyleXLvl_XPLvl5,
+}
+
+option FitnessIsALifestyleXLvl.XPLvl6
+{
+	type = double, min = 1.0,
+	max = 100.0, default = 18.0,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPLvl6,
+	valueTranslation = FitnessIsALifestyleXLvl_XPLvl6,
+}
+
+option FitnessIsALifestyleXLvl.XPLvl7
+{
+	type = double, min = 1.0,
+	max = 100.0, default = 21.0,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPLvl7,
+	valueTranslation = FitnessIsALifestyleXLvl_XPLvl7,
+}
+
+option FitnessIsALifestyleXLvl.XPLvl8
+{
+	type = double, min = 1.0,
+	max = 100.0, default = 24.0,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPLvl8,
+	valueTranslation = FitnessIsALifestyleXLvl_XPLvl8,
+}
+
+option FitnessIsALifestyleXLvl.XPLvl9
+{
+	type = double, min = 1.0,
+	max = 100.0, default = 27.0,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPLvl9,
+	valueTranslation = FitnessIsALifestyleXLvl_XPLvl9,
+}
+
+option FitnessIsALifestyleXLvl.XPLvl10
+{
+	type = double, min = 1.0,
+	max = 100.0, default = 30.0,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPLvl10,
+	valueTranslation = FitnessIsALifestyleXLvl_XPLvl10,
+}
+
+option FitnessIsALifestyleXLvl.XPModPerLevel
+{
+	type = boolean,
+	default = false,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPModPerLevel,
+	valueTranslation = FitnessIsALifestyleXLvl_XPModPerLevel,
+}
+
+option FitnessIsALifestyleXLvl.XPModLvl1
+{
+	type = double, min = 0.0,
+	max = 100.0, default = 0.8,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPModLvl1,
+	valueTranslation = FitnessIsALifestyleXLvl_XPModLvl1,
+}
+
+option FitnessIsALifestyleXLvl.XPModLvl2
+{
+	type = double, min = 0.0,
+	max = 100.0, default = 0.845,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPModLvl2,
+	valueTranslation = FitnessIsALifestyleXLvl_XPModLvl2,
+}
+
+option FitnessIsALifestyleXLvl.XPModLvl3
+{
+	type = double, min = 0.0,
+	max = 100.0, default = 0.89,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPModLvl3,
+	valueTranslation = FitnessIsALifestyleXLvl_XPModLvl3,
+}
+
+option FitnessIsALifestyleXLvl.XPModLvl4
+{
+	type = double, min = 0.0,
+	max = 100.0, default = 0.935,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPModLvl4,
+	valueTranslation = FitnessIsALifestyleXLvl_XPModLvl4,
+}
+
+option FitnessIsALifestyleXLvl.XPModLvl5
+{
+	type = double, min = 0.0,
+	max = 100.0, default = 0.98,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPModLvl5,
+	valueTranslation = FitnessIsALifestyleXLvl_XPModLvl5,
+}
+
+option FitnessIsALifestyleXLvl.XPModLvl6
+{
+	type = double, min = 0.0,
+	max = 100.0, default = 1.025,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPModLvl6,
+	valueTranslation = FitnessIsALifestyleXLvl_XPModLvl6,
+}
+
+option FitnessIsALifestyleXLvl.XPModLvl7
+{
+	type = double, min = 0.0,
+	max = 100.0, default = 1.07,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPModLvl7,
+	valueTranslation = FitnessIsALifestyleXLvl_XPModLvl7,
+}
+
+option FitnessIsALifestyleXLvl.XPModLvl8
+{
+	type = double, min = 0.0,
+	max = 100.0, default = 1.115,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPModLvl8,
+	valueTranslation = FitnessIsALifestyleXLvl_XPModLvl8,
+}
+
+option FitnessIsALifestyleXLvl.XPModLvl9
+{
+	type = double, min = 0.0,
+	max = 100.0, default = 1.16,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPModLvl9,
+	valueTranslation = FitnessIsALifestyleXLvl_XPModLvl9,
+}
+
+option FitnessIsALifestyleXLvl.XPModLvl10
+{
+	type = double, min = 0.0,
+	max = 100.0, default = 1.2,
+
+	page = FitnessIsALifestyleXLvl,
+	translation = FitnessIsALifestyleXLvl_XPModLvl10,
+	valueTranslation = FitnessIsALifestyleXLvl_XPModLvl10,
 }
