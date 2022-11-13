@@ -1,4 +1,4 @@
-/*local function CheckRegularity ()
+--[[local function CheckRegularity ()
 
 	if not itsExercise then
 
@@ -22,4 +22,15 @@
 	end
 end
 
-Events.EveryTenMinutes.Add(CheckRegularity)*/
+Events.EveryTenMinutes.Add(CheckRegularity)]]--
+
+function Test(character, perk, Float)
+	Float = Float * 0.1
+	PerkToUp = perk
+	print(character)
+	print(perk)
+	print(Float)
+	character:getXP():AddXP(PerkToUp, -4.0)
+end
+
+Events.AddXP.Add(Test)
