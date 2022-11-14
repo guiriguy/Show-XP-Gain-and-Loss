@@ -17,15 +17,15 @@ mathMulXP =  function(character, perkType, perkLvl, PercRegNum)
         end
     else
         if not SimpleLevelMultiplier and not mulXPxLevel then
-            print("Normal")
+            --print("Normal")
             local mulXP = mathsUp00(((PercRegNum*(XPMultiplier*(perkLvl+1)))/100)) + 1
             character:getXp():addXpMultiplier(perkType,mulXP,perkLvl,10)
         elseif mulXPxLevel then
-            print("mulXPxLevel")
+            --print("mulXPxLevel")
             local mulXP = mathsUp00(((PercRegNum*(_G["mulLvl"..tostring(perkLvl)]))/100)) + 1
             character:getXp():addXpMultiplier(perkType,mulXP,perkLvl,10)
         elseif SimpleLevelMultiplier then
-            print("SimpleLevelMultiplier")
+            --print("SimpleLevelMultiplier")
             local mulXP = mathsUp00(((PercRegNum*(SLM1+((SLM10-SLM1)*((perkLvl+1)/10))))/100)) + 1
             character:getXp():addXpMultiplier(perkType,mulXP,perkLvl,10)
         end
@@ -74,8 +74,8 @@ end
 
 XPGiven = function(_character, _perk, _float)
     if _player then
-        print("I'm giving XP")
-        print(_getRegularityExercise)
+        --("I'm giving XP")
+        --print(_getRegularityExercise)
         if tostring(_perk) == "Strength" then
             _PerkStrength = _perk
             _LvlPerkStrength = _player:getPerkLevel(_perk)
