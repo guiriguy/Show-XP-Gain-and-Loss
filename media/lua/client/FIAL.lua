@@ -24,7 +24,7 @@ function ISFitnessAction:exeLooped()
             isExercising = true
             _ExerciseName = self.exercise
         end
-        -- Esto funciona!! print(_G["modLvl"..tostring(_LvlPerkFitness)])
+        -- Works! print(_G["modLvl"..tostring(_LvlPerkFitness)])
         _getRegularityExercise = mathsUp00(_player:getFitness():getRegularity(_ExerciseName))
         if _getRegularityExercise then
             mathMulXP(_player, _PerkStrength, _LvlPerkStrength, _getRegularityExercise)
