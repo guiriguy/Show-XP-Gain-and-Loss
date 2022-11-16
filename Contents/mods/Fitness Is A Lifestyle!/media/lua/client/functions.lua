@@ -1,24 +1,38 @@
-mathMulXP =  function(character, perkType, perkLvl, PercRegNum)
+mathMulXP =  function(character, perkType, perkLvl, RegNum)
+    local RegNumBool = 0
+    local mulXP = 0
+    local fixedRegNum = 0
+    --print("MathMulXP Called")
+    if RegNum > 0 then
+        RegNumBool = 0.01
+        fixedRegNum = RegNum /100
+    end
     if XPHardcore then
-        if not SimpleLevelMultiplier and not mulXPxLevel then
+        --[[if not SimpleLevelMultiplier and not mulXPxLevel then
             local mulXP = mathsUp00((((100^((PercRegNum/100)+0.002161)-1)*(XPMultiplier*(perkLvl+1)))/100)) + 1
             character:getXp():addXpMultiplier(perkType,mulXP,perkLvl,10)
-        elseif mulXPxLevel then
-            local mulXP = mathsUp00((((100^((PercRegNum/100)+0.002161)-1)*(_G["mulLvl"..tostring(perkLvl)]))/100)) + 1
+        else]]-- // Legacy
+        if mulXPxLevel then
+            mulXP = mathsUp00(((100^(fixedRegNum))*RegNumBool)*((_G["mulLvl"..tostring(perkLvl)])-1)) + 1
+            --mulXP = mathsUp00((((100^((PercRegNum/100)+0.002161)-1)*(_G["mulLvl"..tostring(perkLvl)]))/100)) + 1 // Legacy
             character:getXp():addXpMultiplier(perkType,mulXP,perkLvl,10)
-        elseif SimpleLevelMultiplier then
-            local mulXP = mathsUp00((((100^((PercRegNum/100)+0.002161)-1)*(SLM1+((SLM10-SLM1)*((perkLvl+1)/10))))/100)) + 1
+        else
+            mulXP = mathsUp00(((100^(fixedRegNum))*RegNumBool)*((SLM1-1)+((SLM10-SLM1)*((perkLvl+1)/10)))) + 1
+            --mulXP = mathsUp00((((100^((PercRegNum/100)+0.002161)-1)*(SLM1+((SLM10-SLM1)*((perkLvl+1)/10))))/100)) + 1 // Legacy
             character:getXp():addXpMultiplier(perkType,mulXP,perkLvl,10)
         end
     else
-        if not SimpleLevelMultiplier and not mulXPxLevel then
-            local mulXP = mathsUp00(((PercRegNum*(XPMultiplier*(perkLvl+1)))/100)) + 1
+        --[[if not SimpleLevelMultiplier and not mulXPxLevel then
+            mulXP = mathsUp00(((PercRegNum*(XPMultiplier*(perkLvl+1)))/100)) + 1
             character:getXp():addXpMultiplier(perkType,mulXP,perkLvl,10)
-        elseif mulXPxLevel then
-            local mulXP = mathsUp00(((PercRegNum*(_G["mulLvl"..tostring(perkLvl)]))/100)) + 1
+        else]]-- Legacy
+        if mulXPxLevel then
+            mulXP = mathsUp00(fixedRegNum*((_G["mulLvl"..tostring(perkLvl)])-1)) + 1
+            --mulXP = mathsUp00(((PercRegNum*(_G["mulLvl"..tostring(perkLvl)]))/100)) + 1 // Legacy
             character:getXp():addXpMultiplier(perkType,mulXP,perkLvl,10)
-        elseif SimpleLevelMultiplier then
-            local mulXP = mathsUp00(((PercRegNum*(SLM1+((SLM10-SLM1)*((perkLvl+1)/10))))/100)) + 1
+        else
+            mulXP = mathsUp00(fixedRegNum*((SLM1-1)+((SLM10-SLM1)*((perkLvl+1)/10)))) + 1
+            --mulXP = mathsUp00(((PercRegNum*(SLM1+((SLM10-SLM1)*((perkLvl+1)/10))))/100)) + 1 // Legacy
             character:getXp():addXpMultiplier(perkType,mulXP,perkLvl,10)
         end
     end
@@ -40,6 +54,8 @@ CheckRegularity = function ()
                 NumberOfExercises = 0
                 _sumAvgRegularity = 0
             end
+        elseif not _player then
+            _player = getPlayer(0)
         end
         --[[for playerIndex=0,getNumActivePlayers()-1 do
 			local character = getSpecificPlayer(playerIndex)
@@ -80,13 +96,10 @@ end
 
 Starter = function()
     XPHardcore = SandboxVars.FitnessIsALifestyle.Hardcore
-    XPMultiplier = SandboxVars.FitnessIsALifestyle.XPMultiplier
-    SimpleLevelMultiplier = SandboxVars.FitnessIsALifestyle.SimpleLevelMultiplier
     SLM1 = SandboxVars.FitnessIsALifestyle.SLM1
     SLM10 = SandboxVars.FitnessIsALifestyle.SLM10
 
     modXPEnable = SandboxVars.FitnessIsALifestyle.VanillaMod
-    XPModifier = SandboxVars.FitnessIsALifestyle.VanillaMultiplier
     SimpleVanillaMod = SandboxVars.FitnessIsALifestyle.SimpleVanillaMod
     SVLM1 = SandboxVars.FitnessIsALifestyle.SVLM1
     SVLM10 = SandboxVars.FitnessIsALifestyle.SVLM10

@@ -10,26 +10,6 @@ option FitnessIsALifestyle.Hardcore
 	valueTranslation = FitnessIsALifestyle_Hardcore,
 }
 
-option FitnessIsALifestyle.XPMultiplier
-{
-	type = double, min = 1.0,
-	max = 100.0, default = 3.0,
-
-	page = FitnessIsALifestyle,
-	translation = FitnessIsALifestyle_XPMultiplier,
-	valueTranslation = FitnessIsALifestyle_XPMultiplier,
-}
-
-option FitnessIsALifestyle.SimpleLevelMultiplier
-{
-	type = boolean,
-	default = false,
-
-	page = FitnessIsALifestyle,
-	translation = FitnessIsALifestyle_SLM,
-	valueTranslation = FitnessIsALifestyle_SLM,
-}
-
 option FitnessIsALifestyle.SLM1
 {
 	type = double, min = 1.0,
