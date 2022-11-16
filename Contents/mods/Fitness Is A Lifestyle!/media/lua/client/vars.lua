@@ -45,14 +45,10 @@ fOfFitness = 0 --(Float) Indicates the amount of XP that Fitness has received (v
 --Options
 
 XPHardcore = false
-
-XPMultiplier = 0
-SimpleLevelMultiplier = false
 SLM1 = 0
 SLM10 = 0
 
 modXPEnable = false
-XPModifier = 0
 SimpleVanillaMod = false
 SVLM1 = 0
 SVLM10 = 0
