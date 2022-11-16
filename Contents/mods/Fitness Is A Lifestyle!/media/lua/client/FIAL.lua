@@ -24,6 +24,7 @@ function ISFitnessAction:exeLooped()
             isExercising = true
             _ExerciseName = self.exercise
         end
+        --print("Looping")
         -- Works! print(_G["modLvl"..tostring(_LvlPerkFitness)])
         _getRegularityExercise = mathsUp00(_player:getFitness():getRegularity(_ExerciseName))
         if _getRegularityExercise then
