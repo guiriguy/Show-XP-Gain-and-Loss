@@ -11,7 +11,7 @@ for i = 1, LookMSTVer:size() do
     if CompMST[modID] and not ISMSTLoaded[modID] then
         require (CompMST[modID])
         ISMSTLoaded[modID] = true
-        print("A version of MST is loaded")
+        --print("A version of MST is loaded")
     end
 end
 
@@ -39,7 +39,7 @@ function ISFitnessAction:start()
     if _player then
         isExercising = true
         _ExerciseName = self.exercise
-        print(_ExerciseName)
+        --print(_ExerciseName)
         if _ExerciseName then
             _getRegularityExercise = mathsUp00(_player:getFitness():getRegularity(_ExerciseName))
         end
@@ -55,6 +55,15 @@ function ISFitnessAction:exeLooped()
             isExercising = true
             _ExerciseName = self.exercise
         end
+        --[[StoreDataTest = _player:getModData().LastTimeExercise
+        if StoreDataTest then
+            _player:getModData().LastTimeExercise = StoreDataTest + 10
+            print("Added 10")
+            print(_player:getModData().LastTimeExercise)
+        else
+            print("Created LastTimeExercise")
+            _player:getModData().LastTimeExercise = 0
+        end]]--
         --print("Looping")
         -- Works! print(_G["modLvl"..tostring(_LvlPerkFitness)])
         _getRegularityExercise = mathsUp00(_player:getFitness():getRegularity(_ExerciseName))

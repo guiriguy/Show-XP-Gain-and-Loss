@@ -131,10 +131,43 @@ Starter = function()
 end
 
 ResetPlayer = function()
+    --_player:getModData().LastTimeExercise = 0
     _player = nil
+    --print("I've died")
+    --print(_player)
 end
 
 Events.AddXP.Add(XPGiven)
 Events.OnLoad.Add(Starter)
 Events.EveryTenMinutes.Add(CheckRegularity)
 Events.OnCharacterDeath.Add(ResetPlayer)
+
+--[[writeSettingsFile = function(tbl, filename)
+--    local file = getFileWriter(filename, true, false)
+--    if not file then
+--        return
+--    end
+--    for key, value in pairs(tbl) do
+--        file:write(key .. " = ".. tostring(value) .. "\r\n")
+--    end
+--    file:close()
+--end
+--
+--readSettingsFile = function(tbl, filename)
+--    local file = getFileReader(filename, true)
+--    if not file then return end
+--    while true do repeat
+--        local line = file:readLine()
+--        if line == nil then
+--            file:close()
+--            return
+--        end
+--        line = string.gsub(line, "^ +(.+) +$", "%1", 1)
+--        if line == "" then break end
+--        for key, value in string.gmatch(line, "(%w+) *= *(.+)") do
+--            tbl[key] = value -- note that value will be a string, you may need to convert to number or w/e
+--        end
+--    until true end
+--    return tbl
+--end
+--this is essentially a stripped version of the code orgm used to read/write the settings .ini file]]--

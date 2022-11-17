@@ -1,6 +1,6 @@
 Unstable changes:
 V0.2.4:
-    - Added compatibility to MST Dynamic and Vanilla
+    - Added compatibility to MST "Dynamic" and "Vanilla"
 
 
 TODO:
