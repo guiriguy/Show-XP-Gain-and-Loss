@@ -1,4 +1,32 @@
-require "TimedAction/ISFitnessAction"
+require "TimedActions/ISFitnessAction"
+
+local CompMST = {
+    ["MoreSimpleTraitsVanilla"] = "MSTVanillaFitnessAction",
+    ["MoreSimpleTraits"] = "MSTFitnessAction"
+}
+local ISMSTLoaded = {}
+local LookMSTVer = getActivatedMods()
+for i = 1, LookMSTVer:size() do
+    local modID = LookMSTVer:get(i-1)
+    if CompMST[modID] and not ISMSTLoaded[modID] then
+        require (CompMST[modID])
+        ISMSTLoaded[modID] = true
+        print("A version of MST is loaded")
+    end
+end
+
+--[[RequireISFA = function()
+    ISFACall = require "TimedActions/ISFitnessAction"
+end]]--
+
+--[[if pcall(ISFACall) then
+    print("it's working")
+    print(ISFACall)
+else
+    print("it's not working")
+    pcall(RequireISFA)
+    print("Recalled")
+end]]--
 
 local default_start = ISFitnessAction.start
 local default_exeLooped = ISFitnessAction.exeLooped
@@ -11,7 +39,10 @@ function ISFitnessAction:start()
     if _player then
         isExercising = true
         _ExerciseName = self.exercise
-        _getRegularityExercise = mathsUp00(_player:getFitness():getRegularity(_ExerciseName))
+        print(_ExerciseName)
+        if _ExerciseName then
+            _getRegularityExercise = mathsUp00(_player:getFitness():getRegularity(_ExerciseName))
+        end
     else
         _player = getPlayer(0)
     end

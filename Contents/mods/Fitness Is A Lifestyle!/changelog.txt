@@ -1,10 +1,14 @@
 Unstable changes:
-V0.2.3:
-    - Deleted the one xp multiplier to only choose between the simple per level multipliers or each level multiplier.
-    - Fixed language errors in description of options.
-    - Changed the way the math is given in the hardcore more to give a more stable exponential numbers.
-    - Seams to not be compatible, as it has errors, to The Workshop, Scrap Armour, Scrap Weapons and the other one xD...
-    - Fixed math error in xp multiplier
-    - Deleted obsolete options and translation
-    - Added Spanish translation
-    - Changed a few tooltips
+V0.2.4:
+    - Added compatibility to MST Dynamic and Vanilla
+
+
+TODO:
+    - Check the CheckRegNum to not get active while you are doing exercise. (Not working as intended)
+    - Check to modify the MST addon when Prodigy from Dynamic traits is added
+    - Add Dynamic Traits to "compatibility"
+    - Add Realistic Growth to the XP base gain
+
+Possible features:
+    - Affect Sprint and agility based on the Fitness and Strength.
+    - The lower the regularity of both, the higher the loss of XP in both (using CheckRegNum)

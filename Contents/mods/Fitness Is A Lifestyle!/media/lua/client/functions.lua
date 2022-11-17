@@ -95,6 +95,7 @@ XPGiven = function(_character, _perk, _float)
 end
 
 Starter = function()
+
     XPHardcore = SandboxVars.FitnessIsALifestyle.Hardcore
     SLM1 = SandboxVars.FitnessIsALifestyle.SLM1
     SLM10 = SandboxVars.FitnessIsALifestyle.SLM10
