@@ -44,7 +44,7 @@ function ISFitnessAction:start()
             _getRegularityExercise = mathsUp00(_player:getFitness():getRegularity(_ExerciseName))
         end
     else
-        _player = getPlayer(0)
+        _player = getPlayer()
     end
 end
 
@@ -54,7 +54,10 @@ function ISFitnessAction:exeLooped()
         if not isExercising or not _ExerciseName then
             isExercising = true
             _ExerciseName = self.exercise
+            print(_ExerciseName)
         end
+        --print(_ExerciseName)
+        --print(_player)
         --[[StoreDataTest = _player:getModData().LastTimeExercise
         if StoreDataTest then
             _player:getModData().LastTimeExercise = StoreDataTest + 10
@@ -92,7 +95,7 @@ function ISFitnessAction:exeLooped()
             end
         end
     else
-        _player = getPlayer(0)
+        _player = getPlayer()
     end
 end
 
@@ -104,7 +107,7 @@ function ISFitnessAction:stop()
         _sumAvgRegularity = 0
         _totalAvgRegularity = 0
     else
-        _player = getPlayer(0)
+        _player = getPlayer()
     end
     default_stop(self)
 end
