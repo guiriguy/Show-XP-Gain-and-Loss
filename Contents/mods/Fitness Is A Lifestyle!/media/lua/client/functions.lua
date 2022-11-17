@@ -55,7 +55,7 @@ CheckRegularity = function ()
                 _sumAvgRegularity = 0
             end
         elseif not _player then
-            _player = getPlayer(0)
+            _player = getPlayer()
         end
         --[[for playerIndex=0,getNumActivePlayers()-1 do
 			local character = getSpecificPlayer(playerIndex)
@@ -90,7 +90,7 @@ XPGiven = function(_character, _perk, _float)
             end
         end
     else
-        _player = getPlayer(0)
+        _player = getPlayer()
     end
 end
 
@@ -137,6 +137,15 @@ ResetPlayer = function()
     --print(_player)
 end
 
+Test = function(_KeyPressed)
+    if isShiftKeyDown() and _KeyPressed == 20 then
+        _player:Say("I'm TEZTING")
+        _player:Say("So my player is:")
+        _player:Say(tostring(_player))
+    end
+end
+
+Events.OnKeyPressed.Add(Test)
 Events.AddXP.Add(XPGiven)
 Events.OnLoad.Add(Starter)
 Events.EveryTenMinutes.Add(CheckRegularity)
