@@ -30,6 +30,8 @@ isExercising = false
 
 NumberOfExercises = 0
 
+--StoreDataTest = 0
+
 --Strength mods
 
 ExIsStrength = false --(Boolean) Indicates that the perk exercised is Strength
