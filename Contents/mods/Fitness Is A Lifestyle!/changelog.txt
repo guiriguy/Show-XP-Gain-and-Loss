@@ -1,7 +1,6 @@
 Unstable changes:
-V0.2.4:
-    - Added compatibility to MST "Dynamic" and "Vanilla"
-
+V0.2.6:
+    - Fixed the calling of player to work in MP
 
 TODO:
     - Check the CheckRegNum to not get active while you are doing exercise. (Not working as intended)
