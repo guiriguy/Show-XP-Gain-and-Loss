@@ -1,0 +1,6 @@
+V0.1.0:
+
+- First Release
+
+TODO:
+- Add Mod Options synergy

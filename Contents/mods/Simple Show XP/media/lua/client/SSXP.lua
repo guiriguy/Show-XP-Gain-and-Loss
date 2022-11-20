@@ -1,11 +1,11 @@
 local old_count = 0
 local new_count = 0
-local SXPGnL = false
+local SSXP = false
 local XPTable = XPTable or {}
 local tsSkill = ""
 local _player
-local function TellMePerks(player, skill, level)
-    SXPGnL = true
+local function GainAllXPs(player, skill, level)
+    SSXP = true
     tsSkill = skill:getName()
     _player = player
     old_count = old_count + 1
@@ -32,11 +32,11 @@ local function ShowXP(player)
     end
 end
 local function CheckToGive()
-    if SXPGnL == true then
+    if SSXP == true then
         if old_count == new_count then
             old_count = 0
             new_count = 0
-            SXPGnL = false
+            SSXP = false
             ShowXP(_player)
             XPTable = {}
             _player = nil
@@ -45,5 +45,5 @@ local function CheckToGive()
         end
     end
 end
-Events.AddXP.Add(TellMePerks)
+Events.AddXP.Add(GainAllXPs)
 Events.OnPlayerUpdate.Add(CheckToGive)
