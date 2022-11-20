@@ -1,5 +1,5 @@
 version=1
-id=
+id=2891170430
 title=Simple Show XP
 description=This mod, based on the Show Skill XP Gain, does more or less the same. Instead of showing all of the gained XP, all together, instead of each one at once. If there's loss of XP, it will also be shown
 tags=Build 41;Misc
