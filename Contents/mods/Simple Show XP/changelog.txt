@@ -1,6 +1,6 @@
-V0.1.0:
+V0.1.1:
 
-- First Release
+- Changed the text format to fit better and better show the + and -
 
 TODO:
 - Add Mod Options synergy
