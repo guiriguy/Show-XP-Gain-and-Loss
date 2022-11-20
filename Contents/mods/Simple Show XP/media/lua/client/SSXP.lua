@@ -22,11 +22,11 @@ local function ShowXP(player)
     if not player:isNPC() and not player:isDead() then
         for _, XPT in pairs(XPTable) do
             local showAmountString = 0
-            showAmountString = string.format(" +%.2f", tostring(XPT.number))
-            if showAmountString > 0 then
+            showAmountString = string.format("%.2f", tostring(XPT.number))
+            if XPT.number > 0 then
                 HaloTextHelper.addTextWithArrow(player, XPT.name .. " +" .. showAmountString, true, HaloTextHelper.getColorGreen())
-            elseif showAmountString < 0 then
-                HaloTextHelper.addTextWithArrow(player, XPT.name .. " -" .. showAmountString, false, HaloTextHelper.getColorRed())
+            elseif XPT.number < 0 then
+                HaloTextHelper.addTextWithArrow(player, XPT.name .. " " .. showAmountString, false, HaloTextHelper.getColorRed())
             end
         end
     end
