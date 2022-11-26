@@ -4,12 +4,14 @@ local SSXP = false
 local XPTable = XPTable or {}
 local tsSkill = ""
 local _player
+local Timer = 0
 local function GainAllXPs(player, skill, level)
     SSXP = true
     tsSkill = skill:getName()
     _player = player
     old_count = old_count + 1
-    if level ~= 0 then
+    local roundLevel = math.ceil(level*100)/100
+    if roundLevel ~= 0 then
         if XPTable[tsSkill] then
             XPTable[tsSkill]["number"] = XPTable[tsSkill]["number"] + level
         else
@@ -32,8 +34,12 @@ local function ShowXP(player)
     end
 end
 local function CheckToGive()
-    if SSXP == true then
+    if Timer < 300 then
+        Timer = Timer + 1
+    end
+    if SSXP == true and Timer == 300 then
         if old_count == new_count then
+            Timer = 0
             old_count = 0
             new_count = 0
             SSXP = false

@@ -1,6 +1,7 @@
-V0.1.1:
+V0.1.2:
 
-- Changed the text format to fit better and better show the + and -
+- The skills that are too fast for the text shower (It takes like 3 seconds with the text floating) will now wait 300 ticks to show the text again, making even cleaner the showing of XP.
+- Also added a check that will show XP with a value higher than 0.01, as sometimes the gain is lower than that.
 
 TODO:
 - Add Mod Options synergy
