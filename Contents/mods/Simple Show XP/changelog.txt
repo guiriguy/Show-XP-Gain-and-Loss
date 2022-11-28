@@ -1,10 +1,4 @@
-V0.1.3:
-
-    - Added Mod options with selection of different Refresh timers, Custom (using real life seconds), Every One and Ten ingame Minutes, Every Hour and Every Day.
-    - Added a selector to hide all Modded XP gains, as well as Vanilla XP gains.
-    - Optimized the code.
-    - Removed Foraging as a Skill to show the XP Gain.
-    - Added the option to show only the gain of the skill, without the value.
+V0.1.4:
 
 TODO:
 - Add Mod Options synergy
