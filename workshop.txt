@@ -1,16 +1,16 @@
 version=1
 id=2891170430
 title=Simple Show XP
-description=[h3]This mod is based on the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2313633950]Show Skill XP Gain[/url][/h3]
-description=
-description=The basics are there, except the Mod Options addon.
-description=
-description=[quote]
-description=[h3]Features:[/h3]
-description=- Shows the sum of all XP, per perk, all together, instead of all of them separately.
-description=- Shows negative values, just in case there is lost in a perk's XP, it will show in red and with a inverted triangle.
-description=[/quote]
-description=
+description=[h3]This mod is based on the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2313633950]Show Skill XP Gain[/url][/h3]
+description=
+description=The basics are there, except the Mod Options addon.
+description=
+description=[quote]
+description=[h3]Features:[/h3]
+description=- Shows the sum of all XP, per perk, all together, instead of all of them separately.
+description=- Shows negative values, just in case there is lost in a perk's XP, it will show in red and with a inverted triangle.
+description=[/quote]
+description=
 description=The Mod Options addon was not added just yet, but it will be added.
 tags=Build 41;Interface;Misc;Multiplayer
 visibility=public
