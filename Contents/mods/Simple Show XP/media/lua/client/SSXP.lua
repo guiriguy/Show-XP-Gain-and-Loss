@@ -352,9 +352,7 @@ local function CheckToGiveEOM()
         for i = 0,getNumActivePlayers()-1 do
             local _player = getSpecificPlayer(i)
             if not _player:isNPC() and not _player:isDead() and _player then
-                if SSXP.AppliedSettings.refreshMode == 1 and SSXP.XPGiven then
-                    ShowXP(_player)
-                end
+                ShowXP(_player)
             end
         end
     end
@@ -364,9 +362,7 @@ local function CheckToGiveETM()
         for i = 0,getNumActivePlayers()-1 do
             local _player = getSpecificPlayer(i)
             if not _player:isNPC() and not _player:isDead() and _player then
-                if SSXP.AppliedSettings.refreshMode == 2 and SSXP.XPGiven then
-                    ShowXP(_player)
-                end
+                ShowXP(_player)
             end
         end
     end
@@ -376,9 +372,7 @@ local function CheckToGiveEH()
         for i = 0,getNumActivePlayers()-1 do
             local _player = getSpecificPlayer(i)
             if not _player:isNPC() and not _player:isDead() and _player then
-                if SSXP.AppliedSettings.refreshMode == 1 and SSXP.XPGiven then
-                    ShowXP(_player)
-                end
+                ShowXP(_player)
             end
         end
     end
@@ -388,9 +382,7 @@ local function CheckToGiveED()
         for i = 0,getNumActivePlayers()-1 do
             local _player = getSpecificPlayer(i)
             if not _player:isNPC() and not _player:isDead() and _player then
-                if SSXP.AppliedSettings.refreshMode == 1 and SSXP.XPGiven then
-                    ShowXP(_player)
-                end
+                ShowXP(_player)
             end
         end
     end
