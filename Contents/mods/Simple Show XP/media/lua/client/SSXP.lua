@@ -123,28 +123,28 @@ if ModOptions and ModOptions.getInstance then
                 OnApplyInGame = ApplySSXPSettings,
             },
             Blunt = {
-                name = "Hide Blunt",
+                name = "Hide Long Blunt",
                 tooltip = "Hide the gains of this Perk",
                 default = false,
                 OnApplyMainMenu = ApplySSXPSettings,
                 OnApplyInGame = ApplySSXPSettings,
             },
             SmallBlunt = {
-                name = "Hide SmallBlunt",
+                name = "Hide Small Blunt",
                 tooltip = "Hide the gains of this Perk",
                 default = false,
                 OnApplyMainMenu = ApplySSXPSettings,
                 OnApplyInGame = ApplySSXPSettings,
             },
             LongBlade = {
-                name = "Hide LongBlade",
+                name = "Hide Long Blade",
                 tooltip = "Hide the gains of this Perk",
                 default = false,
                 OnApplyMainMenu = ApplySSXPSettings,
                 OnApplyInGame = ApplySSXPSettings,
             },
             SmallBlade = {
-                name = "Hide SmallBlade",
+                name = "Hide Small Blade",
                 tooltip = "Hide the gains of this Perk",
                 default = false,
                 OnApplyMainMenu = ApplySSXPSettings,
@@ -165,7 +165,7 @@ if ModOptions and ModOptions.getInstance then
                 OnApplyInGame = ApplySSXPSettings,
             },
             Woodwork = {
-                name = "Hide Crafting",
+                name = "Hide Carpentry",
                 tooltip = "Hide the gains of this Perk",
                 default = false,
                 OnApplyMainMenu = ApplySSXPSettings,
@@ -267,9 +267,11 @@ end
 local function CheckIfPerkIsIgnored(skill)
     if SSXP.VanillaPerks[tostring(skill)] and not SSXP.IgnorePerks[tostring(skill)] then
         --print("Vanilla Skill code should run")
+        print(skill," is vanilla")
         return true
     elseif not SSXP.AppliedSettings.OtherSkills and not SSXP.VanillaPerks[tostring(skill)] then
         --print("Modded Skill code should run")
+        print(skill," is from mod")
         return true
     end
 end
