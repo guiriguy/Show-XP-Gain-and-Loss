@@ -271,7 +271,7 @@ local function CheckIfPerkIsIgnored(skill)
         return true
     elseif not SSXP.AppliedSettings.OtherSkills and not SSXP.VanillaPerks[tostring(skill)] then
         --print("Modded Skill code should run")
-        print(skill," is from mod")
+        --print(skill," is from mod")
         return true
     end
 end
