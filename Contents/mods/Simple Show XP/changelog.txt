@@ -1,3 +1,7 @@
 V0.1.4:
+    - Added translation to Spanish (Spain)
+    - Added the posibility to be translated to any other, supported, language.
+    - Added more options to Mod Options. (Show only positive values, Show only negative values...)
+    - Changed the default time setting from 3 to 5 in Custom Frequency.
 
 TODO:
