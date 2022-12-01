@@ -1,5 +1,4 @@
 local SSXP = {}
-SSXP.showNumbers = true
 SSXP.XPGiven = false
 SSXP.Counted = false
 SSXP.XPTable = SSXP.XPTable or {}
@@ -32,8 +31,16 @@ SSXP.VanillaPerks = { Strength = "Strength",
                       PlantScavenging = "Foraging"}
 SSXP.IgnorePerks = {Foraging=true}
 SSXP.AppliedSettings = SSXP.AppliedSettings or {}
+--╭────────────────────────╮
+--|   ModOptions Addon     |
+--╰────────────────────────╯
 if ModOptions and ModOptions.getInstance then
+    print("test")
     local ApplySSXPSettings = function(optionValues)
+        SSXP.AppliedSettings.debugMode = optionValues.settings.options.debugMode
+        SSXP.AppliedSettings.showNumbers = optionValues.settings.options.showNumbers
+        SSXP.AppliedSettings.OnlyNegative = optionValues.settings.options.showOnlyNegative
+        SSXP.AppliedSettings.OnlyPositive = optionValues.settings.options.showOnlyPositive
         SSXP.AppliedSettings.refreshMode = optionValues.settings.options.refreshMode
         SSXP.AppliedSettings.refreshModeSeconds = optionValues.settings.options.refreshModeSeconds
         SSXP.AppliedSettings.OtherSkills = optionValues.settings.options.OtherSkills
@@ -50,10 +57,31 @@ if ModOptions and ModOptions.getInstance then
     local Settings =
     {
         options_data = {
+            debugMode = {
+                name = "Debug Mode",
+                tooltip = "If true, it will show all XP gained and lost without summing them and without any timer.",
+                default = false,
+                OnApplyMainMenu = ApplySSXPSettings,
+                OnApplyInGame = ApplySSXPSettings,
+            },
             showNumbers = {
                 name = "Show Numbers",
                 tooltip = "If true, it will show the XP numbers",
                 default = true,
+                OnApplyMainMenu = ApplySSXPSettings,
+                OnApplyInGame = ApplySSXPSettings,
+            },
+            showOnlyPositive = {
+                name = "Show Only Positive",
+                tooltip = "If true, it will only show Positive Values",
+                default = false,
+                OnApplyMainMenu = ApplySSXPSettings,
+                OnApplyInGame = ApplySSXPSettings,
+            },
+            showOnlyNegative = {
+                name = "Show Only Negative",
+                tooltip = "If true, it will only show Negative Values",
+                default = false,
                 OnApplyMainMenu = ApplySSXPSettings,
                 OnApplyInGame = ApplySSXPSettings,
             },
@@ -66,10 +94,10 @@ if ModOptions and ModOptions.getInstance then
                 OnApplyInGame = ApplySSXPSettings,
             },
             refreshModeSeconds = {
-                "3","4","5","6","7","8","9","10",
+                "3","4","5","6","7","8","9","10","15","30","60",
                 name = "Real life seconds",
                 tooltip = "When Custom is selected, these are the seconds it will take to show the gained XP again",
-                default = 1,
+                default = 3,
                 OnApplyMainMenu = ApplySSXPSettings,
                 OnApplyInGame = ApplySSXPSettings,
             },
@@ -262,34 +290,46 @@ if ModOptions and ModOptions.getInstance then
     }
     ModOptions:getInstance(Settings)
     ModOptions:loadFile()
+    local getSettings = ModOptions:getInstance(Settings)
+    local OnlyPositive = getSettings:getData("showOnlyPositive")
+    local OnlyNegative = getSettings:getData("showOnlyNegative")
+    function OnlyPositive:onUpdate(boolean)
+        if boolean then
+            OnlyNegative:set(false)
+        end
+    end
+    function OnlyNegative:onUpdate(boolean)
+        if boolean then
+            OnlyPositive:set(false)
+        end
+    end
     Events.OnGameStart.Add(function() ApplySSXPSettings({settings = Settings}) end)
 end
-local function CheckIfPerkIsIgnored(skill)
+--╭────────────────────────╮
+--|       Functions        |
+--╰────────────────────────╯
+SSXP.CheckIfPerkIsIgnored =  function(skill)
     if SSXP.VanillaPerks[tostring(skill)] and not SSXP.IgnorePerks[tostring(skill)] then
-        --print("Vanilla Skill code should run")
-        --print(skill," is vanilla")
         return true
     elseif not SSXP.AppliedSettings.OtherSkills and not SSXP.VanillaPerks[tostring(skill)] then
-        --print("Modded Skill code should run")
-        --print(skill," is from mod")
         return true
     end
 end
-local function GainAllXPs(player, skill, level)
-    if not player:isNPC() and not player:isDead() then
-        if CheckIfPerkIsIgnored(skill) then
-            local tsSkill = skill:getName()
-            local roundLevel = math.ceil(level*100)/100
-            if roundLevel ~= 0 then
-                if SSXP.XPTable[tsSkill] then
-                    SSXP.XPTable[tsSkill]["number"] = SSXP.XPTable[tsSkill]["number"] + level
-                else
-                    SSXP.XPTable[tsSkill] = {name = tsSkill, number = level}
-                end
+SSXP.GainAllXPs = function(player, skill, level)
+    if not player:isNPC() and not player:isDead() and SSXP.CheckIfPerkIsIgnored(skill) then
+        local tsSkill = skill:getName()
+        local roundLevel = math.ceil(level*100)/100
+        if roundLevel ~= 0  and not SSXP.AppliedSettings.debugMode then
+            if SSXP.XPTable[tsSkill] then
+                SSXP.XPTable[tsSkill]["number"] = SSXP.XPTable[tsSkill]["number"] + level
+            else
+                SSXP.XPTable[tsSkill] = {name = tsSkill, number = level}
             end
             SSXP.XPGiven = true
-            tsSkill = ""
+        elseif roundLevel ~= 0 and SSXP.AppliedSettings.debugMode then
+            SSXP.ShowXP(player,tsSkill,level)
         end
+    end
         --[[for _, Perk in pairs(Perks) do
             if SSXP.VanillaPerks[tostring(Perk)] then
                 --print("The perk is vanilla: "..tostring(SSXP.VanillaPerks[tostring(Perks)]))
@@ -297,40 +337,53 @@ local function GainAllXPs(player, skill, level)
                 print(tostring(Perk).." is missing")
             end
         end]]--
-    end
 end
-local function ShowXP(player)
+SSXP.ShowXP = function(player,perk,float)
     if not player:isNPC() and not player:isDead() then
-        local HaloText = HaloTextHelper --For optimizing
-        if SSXP.AppliedSettings.refreshMode == 1 then
-            HaloText.addText(player, "In the last minute",HaloText.getColorWhite())
-        elseif SSXP.AppliedSettings.refreshMode == 2 then
-            HaloText.addText(player, "In the last ten minute",HaloText.getColorWhite())
-        elseif SSXP.AppliedSettings.refreshMode == 3 then
-            HaloText.addText(player, "In the last hour",HaloText.getColorWhite())
-        elseif SSXP.AppliedSettings.refreshMode == 4 then
-            HaloText.addText(player, "In the last day",HaloText.getColorWhite())
-        end
-        for _, XPT in pairs(SSXP.XPTable) do
+        if not SSXP.AppliedSettings.debugMode then
+            local HaloText = HaloTextHelper --For optimizing
+            if SSXP.AppliedSettings.refreshMode == 1 then
+                HaloText.addText(player, "In the last minute",HaloText.getColorWhite())
+            elseif SSXP.AppliedSettings.refreshMode == 2 then
+                HaloText.addText(player, "In the last ten minute",HaloText.getColorWhite())
+            elseif SSXP.AppliedSettings.refreshMode == 3 then
+                HaloText.addText(player, "In the last hour",HaloText.getColorWhite())
+            elseif SSXP.AppliedSettings.refreshMode == 4 then
+                HaloText.addText(player, "In the last day",HaloText.getColorWhite())
+            end
+            for _, XPT in pairs(SSXP.XPTable) do
+                local showAmountString = ""
+                local roundValue = math.floor(XPT.number*100)/100
+                if SSXP.AppliedSettings.showNumbers then
+                    showAmountString = string.format("%.2f", tostring(roundValue))
+                end
+                if roundValue > 0 and not SSXP.AppliedSettings.OnlyNegative then
+                    HaloText.addTextWithArrow(player, XPT.name .. " +" .. showAmountString, true, HaloText.getColorGreen())
+                elseif roundValue < 0 and not SSXP.AppliedSettings.OnlyPositive then
+                    HaloText.addTextWithArrow(player, XPT.name .. " " .. showAmountString, false, HaloText.getColorRed())
+                end
+            end
+            SSXP.Counted = false
+            SSXP.Timer = 0
+            SSXP.XPGiven = false
+            SSXP.XPTable = {}
+        else
+            local HaloText = HaloTextHelper --For optimizing
             local showAmountString = ""
-            local roundValue = math.floor(XPT.number*100)/100
-            if SSXP.showNumbers then
+            local roundValue = math.floor(float*100)/100
+            if SSXP.AppliedSettings.showNumbers then
                 showAmountString = string.format("%.2f", tostring(roundValue))
             end
-            if roundValue > 0 then
-                HaloText.addTextWithArrow(player, XPT.name .. " +" .. showAmountString, true, HaloText.getColorGreen())
-            elseif roundValue < 0 then
-                HaloText.addTextWithArrow(player, XPT.name .. " " .. showAmountString, false, HaloText.getColorRed())
+            if roundValue > 0 and not SSXP.AppliedSettings.OnlyNegative then
+                HaloText.addTextWithArrow(player, perk .. " +" .. showAmountString, true, HaloText.getColorGreen())
+            elseif roundValue < 0 and not SSXP.AppliedSettings.OnlyPositive then
+                HaloText.addTextWithArrow(player, perk .. " " .. showAmountString, false, HaloText.getColorRed())
             end
         end
-        SSXP.Counted = false
-        SSXP.Timer = 0
-        SSXP.XPGiven = false
-        SSXP.XPTable = {}
     end
 end
-local function CheckToGiveOPU(player)
-    if not player:isNPC() and not player:isDead() then
+SSXP.CheckToGiveOPU = function(player) -- OnPlayerUpdate
+    if not player:isNPC() and not player:isDead() and not SSXP.AppliedSettings.debugMode then
         if SSXP.AppliedSettings.refreshMode == 5 then
             local Calendar = Calendar.getInstance() -- For optimizing
             if not SSXP.Counted then
@@ -342,54 +395,57 @@ local function CheckToGiveOPU(player)
                 end
             end
             if (Calendar:getTimeInMillis()/1000) >= SSXP.Timer and SSXP.XPGiven then
-                ShowXP(player)
+                SSXP.ShowXP(player)
             end
         end
     end
 end
-local function CheckToGiveEOM()
-    if SSXP.XPGiven and SSXP.AppliedSettings.refreshMode == 1 then
+SSXP.CheckToGiveEOM = function() --EveryOneMinute
+    if SSXP.XPGiven and SSXP.AppliedSettings.refreshMode == 1 and not SSXP.AppliedSettings.debugMode then
         for i = 0,getNumActivePlayers()-1 do
             local _player = getSpecificPlayer(i)
             if not _player:isNPC() and not _player:isDead() and _player then
-                ShowXP(_player)
+                SSXP.ShowXP(_player)
             end
         end
     end
 end
-local function CheckToGiveETM()
-    if SSXP.XPGiven and SSXP.AppliedSettings.refreshMode == 2 then
+SSXP.CheckToGiveETM = function() --EveryTenMinutes
+    if SSXP.XPGiven and SSXP.AppliedSettings.refreshMode == 2 and not SSXP.AppliedSettings.debugMode then
         for i = 0,getNumActivePlayers()-1 do
             local _player = getSpecificPlayer(i)
             if not _player:isNPC() and not _player:isDead() and _player then
-                ShowXP(_player)
+                SSXP.ShowXP(_player)
             end
         end
     end
 end
-local function CheckToGiveEH()
-    if SSXP.XPGiven and SSXP.AppliedSettings.refreshMode == 3 then
+SSXP.CheckToGiveEH = function() --EveryHours
+    if SSXP.XPGiven and SSXP.AppliedSettings.refreshMode == 3 and not SSXP.AppliedSettings.debugMode then
         for i = 0,getNumActivePlayers()-1 do
             local _player = getSpecificPlayer(i)
             if not _player:isNPC() and not _player:isDead() and _player then
-                ShowXP(_player)
+                SSXP.ShowXP(_player)
             end
         end
     end
 end
-local function CheckToGiveED()
-    if SSXP.XPGiven and SSXP.AppliedSettings.refreshMode == 4 then
+SSXP.CheckToGiveED = function() --EveryDays
+    if SSXP.XPGiven and SSXP.AppliedSettings.refreshMode == 4 and not SSXP.AppliedSettings.debugMode then
         for i = 0,getNumActivePlayers()-1 do
             local _player = getSpecificPlayer(i)
             if not _player:isNPC() and not _player:isDead() and _player then
-                ShowXP(_player)
+                SSXP.ShowXP(_player)
             end
         end
     end
 end
-Events.OnPlayerUpdate.Add(CheckToGiveOPU)
-Events.EveryOneMinute.Add(CheckToGiveEOM)
-Events.EveryTenMinutes.Add(CheckToGiveETM)
-Events.EveryHours.Add(CheckToGiveEH)
-Events.EveryDays.Add(CheckToGiveED)
-Events.AddXP.Add(GainAllXPs)
+--╭────────────────────────╮
+--|         Events         |
+--╰────────────────────────╯
+Events.OnPlayerUpdate.Add(SSXP.CheckToGiveOPU)
+Events.EveryOneMinute.Add(SSXP.CheckToGiveEOM)
+Events.EveryTenMinutes.Add(SSXP.CheckToGiveETM)
+Events.EveryHours.Add(SSXP.CheckToGiveEH)
+Events.EveryDays.Add(SSXP.CheckToGiveED)
+Events.AddXP.Add(SSXP.GainAllXPs)
