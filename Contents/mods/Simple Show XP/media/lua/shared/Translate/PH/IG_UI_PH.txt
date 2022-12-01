@@ -44,4 +44,8 @@ UI_PH = {
     IGUI_SSXP_OtherSkills = "Hide Modded Skills",
     IGUI_SSXP_VanillaPerks_tooltip = "Hide the gains of this Perk.",
     IGUI_SSXP_ModdedPerks_tooltip = "Hide the gains of all Modded Perks.",
+    IGUI_SSXP_TimeMinute = "In the last Minute",
+    IGUI_SSXP_TimeTenMinutes = "In the last Ten Minutes",
+    IGUI_SSXP_TimeHour = "In the last Hour",
+    IGUI_SSXP_TimeDay = "In the last Day",
 }

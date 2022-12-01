@@ -343,13 +343,13 @@ SSXP.ShowXP = function(player,perk,float)
         if not SSXP.AppliedSettings.debugMode then
             local HaloText = HaloTextHelper --For optimizing
             if SSXP.AppliedSettings.refreshMode == 1 then
-                HaloText.addText(player, "In the last minute",HaloText.getColorWhite())
+                HaloText.addText(player, getText("IGUI_SSXP_TimeMinute"),HaloText.getColorWhite())
             elseif SSXP.AppliedSettings.refreshMode == 2 then
-                HaloText.addText(player, "In the last ten minute",HaloText.getColorWhite())
+                HaloText.addText(player, getText("IGUI_SSXP_TimeTenMinutes"),HaloText.getColorWhite())
             elseif SSXP.AppliedSettings.refreshMode == 3 then
-                HaloText.addText(player, "In the last hour",HaloText.getColorWhite())
+                HaloText.addText(player, getText("IGUI_SSXP_TimeHour"),HaloText.getColorWhite())
             elseif SSXP.AppliedSettings.refreshMode == 4 then
-                HaloText.addText(player, "In the last day",HaloText.getColorWhite())
+                HaloText.addText(player, getText("IGUI_SSXP_TimeDay"),HaloText.getColorWhite())
             end
             for _, XPT in pairs(SSXP.XPTable) do
                 local showAmountString = ""
