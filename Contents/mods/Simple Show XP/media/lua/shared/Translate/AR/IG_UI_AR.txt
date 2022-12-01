@@ -1,4 +1,4 @@
-UI_EN = {
+UI_AR = {
     IGUI_SSXP_debugMode = "Debug Mode",
     IGUI_SSXP_debugMode_tooltip = "If true, it will show all XP gained and lost without summing them and without any timer.",
     IGUI_SSXP_showNumbers = "Show Numbers",

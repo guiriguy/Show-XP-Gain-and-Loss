@@ -277,7 +277,7 @@ if ModOptions and ModOptions.getInstance then
                 OnApplyInGame = ApplySSXPSettings,
             },
             OtherSkills = {
-                name = "Hide Modded Skills",
+                name = "IGUI_SSXP_OtherSkills",
                 tooltip = "IGUI_SSXP_ModdedPerks_tooltip",
                 default = false,
                 OnApplyMainMenu = ApplySSXPSettings,
