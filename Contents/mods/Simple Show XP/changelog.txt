@@ -1,6 +1,8 @@
 V0.1.5:
     - Added Native translation to Thai. Thanks to @RUN 90s
+    - Added Native translation to French. Thanks to @DfroK
     - Fixed the foraging bug, that showed the XP even though being hidden. Thanks to @Js
+
 
 TODO:
     - Check the amount values, as sometimes, or with some mods it will not show the real value. 
