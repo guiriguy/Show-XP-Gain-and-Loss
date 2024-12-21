@@ -1,4 +1,4 @@
-local SSXP = {}
+SSXP = {}
 SSXP.XPGiven = false
 SSXP.Counted = false
 SSXP.XPTable = SSXP.XPTable or {}
@@ -29,7 +29,7 @@ SSXP.VanillaPerks = { Strength = "Strength",
                       Fishing = "Fishing",
                       Trapping = "Trapping",
                       PlantScavenging = "Foraging"}
-SSXP.IgnorePerks = {Foraging=true}
+SSXP.IgnorePerks = {PlantScavenging=true}
 SSXP.AppliedSettings = SSXP.AppliedSettings or {}
 --╭────────────────────────╮
 --|   ModOptions Addon     |

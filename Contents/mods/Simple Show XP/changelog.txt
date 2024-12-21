@@ -1,7 +1,6 @@
-V0.1.4:
-    - Added translation to Spanish (Spain)
-    - Added the posibility to be translated to any other, supported, language.
-    - Added more options to Mod Options. (Show only positive values, Show only negative values...)
-    - Changed the default time setting from 3 to 5 in Custom Frequency.
+V0.1.5:
+    - Added Native translation to Thai. Thanks to @RUN 90s
+    - Fixed the foraging bug, that showed the XP even though being hidden. Thanks to @Js
 
 TODO:
+    - Check the amount values, as sometimes, or with some mods it will not show the real value. 
