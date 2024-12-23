@@ -6,7 +6,7 @@ V0.2.0:
 		- Added Changeable Arrow Colors in Options (Main Menu)
 		- Added slider for seconds up to 60, when Custom is selected
 		- Added the done translations, adapted to the new version.
-		- 
+
 
 	B41's Changes:
 		- Made re-compatible with B41!
