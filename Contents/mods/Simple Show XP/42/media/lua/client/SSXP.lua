@@ -1,451 +1,155 @@
-SSXP = {}
-SSXP.XPGiven = false
-SSXP.Counted = false
-SSXP.XPTable = SSXP.XPTable or {}
-SSXP.Timer = 0
-SSXP.VanillaPerks = { Strength = "Strength",
-                      Fitness = "Fitness",
-                      Sprinting = "Sprinting",
-                      Lightfoot = "Lightfooted",
-                      Nimble = "Nimble",
-                      Sneak = "Sneaking",
-                      Axe = "Axe",
-                      Blunt = "Long Blunt",
-                      SmallBlunt = "Short Blunt",
-                      LongBlade = "Long Blade",
-                      SmallBlade = "Short Blade",
-                      Spear = "Spear",
-                      Maintenance = "Maintenance",
-                      Woodwork = "Carpentry",
-                      Cooking = "Cooking",
-                      Farming = "Farming",
-                      Doctor = "First Aid",
-                      Electricity = "Electrical",
-                      MetalWelding = "Metalworking",
-                      Mechanics = "Mechanics",
-                      Tailoring = "Tailoring",
-                      Aiming = "Aiming",
-                      Reloading = "Reloading",
-                      Fishing = "Fishing",
-                      Trapping = "Trapping",
-                      PlantScavenging = "Foraging"}
-SSXP.IgnorePerks = {PlantScavenging=true}
-SSXP.AppliedSettings = SSXP.AppliedSettings or {}
 --╭────────────────────────╮
---|   ModOptions Addon     |
+--|          Vars          |
 --╰────────────────────────╯
-if ModOptions and ModOptions.getInstance then
-    print("test")
-    local ApplySSXPSettings = function(optionValues)
-        SSXP.AppliedSettings.debugMode = optionValues.settings.options.debugMode
-        SSXP.AppliedSettings.showNumbers = optionValues.settings.options.showNumbers
-        SSXP.AppliedSettings.OnlyNegative = optionValues.settings.options.showOnlyNegative
-        SSXP.AppliedSettings.OnlyPositive = optionValues.settings.options.showOnlyPositive
-        SSXP.AppliedSettings.refreshMode = optionValues.settings.options.refreshMode
-        SSXP.AppliedSettings.refreshModeSeconds = optionValues.settings.options.refreshModeSeconds
-        SSXP.AppliedSettings.OtherSkills = optionValues.settings.options.OtherSkills
-        for k,v in pairs(optionValues.settings.options) do
-            if SSXP.VanillaPerks[k] then
-                if v and not SSXP.IgnorePerks[k] then
-                    SSXP.IgnorePerks[k] = v
-                elseif SSXP.IgnorePerks[k] and not v then
-                    SSXP.IgnorePerks[k] = v
-                end
-            end
-        end
-    end
-    local Settings =
-    {
-        options_data = {
-            debugMode = {
-                name = "IGUI_SSXP_debugMode",
-                tooltip = "IGUI_SSXP_debugMode_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            showNumbers = {
-                name = "IGUI_SSXP_showNumbers",
-                tooltip = "IGUI_SSXP_showNumbers_tooltip",
-                default = true,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            showOnlyPositive = {
-                name = "IGUI_SSXP_showOnlyPositive",
-                tooltip = "IGUI_SSXP_showOnlyPositive_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            showOnlyNegative = {
-                name = "IGUI_SSXP_showOnlyNegative",
-                tooltip = "IGUI_SSXP_showOnlyNegative_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            refreshMode = {
-                getText("IGUI_SSXP_refreshMode_1"),getText("IGUI_SSXP_refreshMode_2"),getText("IGUI_SSXP_refreshMode_3"),getText("IGUI_SSXP_refreshMode_4"),getText("IGUI_SSXP_refreshMode_5"),
-                name = "IGUI_SSXP_refreshMode",
-                tooltip = "IGUI_SSXP_refreshMode_tooltip",
-                default = 5,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            refreshModeSeconds = {
-                "3","4","5","6","7","8","9","10","15","30","60",
-                name = "IGUI_SSXP_refreshModeSeconds",
-                tooltip = "IGUI_SSXP_refreshModeSeconds_tooltip",
-                default = 3,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Strength = {
-                name = "IGUI_SSXP_Strength",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Fitness = {
-                name = "IGUI_SSXP_Fitness",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Sprinting = {
-                name = "IGUI_SSXP_Sprinting",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Lightfoot = {
-                name = "IGUI_SSXP_Lightfoot",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Nimble = {
-                name = "IGUI_SSXP_Nimble",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Sneak = {
-                name = "IGUI_SSXP_Sneak",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Axe = {
-                name = "IGUI_SSXP_Axe",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Blunt = {
-                name = "IGUI_SSXP_Blunt",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            SmallBlunt = {
-                name = "IGUI_SSXP_SmallBlunt",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            LongBlade = {
-                name = "IGUI_SSXP_LongBlade",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            SmallBlade = {
-                name = "IGUI_SSXP_SmallBlade",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Spear = {
-                name = "IGUI_SSXP_Spear",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Maintenance = {
-                name = "IGUI_SSXP_Maintenance",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Woodwork = {
-                name = "IGUI_SSXP_Woodwork",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Cooking = {
-                name = "IGUI_SSXP_Cooking",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Farming = {
-                name = "IGUI_SSXP_Farming",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Doctor = {
-                name = "IGUI_SSXP_Doctor",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Electricity = {
-                name = "IGUI_SSXP_Electricity",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            MetalWelding = {
-                name = "IGUI_SSXP_MetalWelding",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Mechanics = {
-                name = "IGUI_SSXP_Mechanics",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Tailoring = {
-                name = "IGUI_SSXP_Tailoring",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Aiming = {
-                name = "IGUI_SSXP_Aiming",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Reloading = {
-                name = "IGUI_SSXP_Reloading",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Fishing = {
-                name = "IGUI_SSXP_Fishing",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            Trapping = {
-                name = "IGUI_SSXP_Trapping",
-                tooltip = "IGUI_SSXP_VanillaPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-            OtherSkills = {
-                name = "IGUI_SSXP_OtherSkills",
-                tooltip = "IGUI_SSXP_ModdedPerks_tooltip",
-                default = false,
-                OnApplyMainMenu = ApplySSXPSettings,
-                OnApplyInGame = ApplySSXPSettings,
-            },
-        },
-        mod_id = "SimpleShowXP",
-        mod_shortname = "Simple Show XP",
-        mod_fullname = "Simple Show XP",
-    }
-    ModOptions:getInstance(Settings)
-    ModOptions:loadFile()
-    local getSettings = ModOptions:getInstance(Settings)
-    local OnlyPositive = getSettings:getData("showOnlyPositive")
-    local OnlyNegative = getSettings:getData("showOnlyNegative")
-    function OnlyPositive:onUpdate(boolean)
-        if boolean then
-            OnlyNegative:set(false)
-        end
-    end
-    function OnlyNegative:onUpdate(boolean)
-        if boolean then
-            OnlyPositive:set(false)
-        end
-    end
-    Events.OnGameStart.Add(function() ApplySSXPSettings({settings = Settings}) end)
-end
+SSXP = {}
+SSXP.XPTableCreated = false
+SSXP.OptionsTableCreated = false
+SSXP.Options = nil
+SSXP.Timer = 0
+SSXP.ActivePerks = {}
+SSXP.GainedPerks = {}
+SSXP.XPPerks = {}
+_player = nil
 --╭────────────────────────╮
 --|       Functions        |
 --╰────────────────────────╯
-SSXP.CheckIfPerkIsIgnored =  function(skill)
-    if SSXP.VanillaPerks[tostring(skill)] and not SSXP.IgnorePerks[tostring(skill)] then
-        return true
-    elseif not SSXP.AppliedSettings.OtherSkills and not SSXP.VanillaPerks[tostring(skill)] then
-        return true
-    end
-end
-SSXP.GainAllXPs = function(player, skill, level)
-    if not player:isNPC() and not player:isDead() and SSXP.CheckIfPerkIsIgnored(skill) then
-        local tsSkill = skill:getName()
-        local roundLevel = math.ceil(level*100)/100
-        if roundLevel ~= 0  and not SSXP.AppliedSettings.debugMode then
-            if SSXP.XPTable[tsSkill] then
-                SSXP.XPTable[tsSkill]["number"] = SSXP.XPTable[tsSkill]["number"] + level
-            else
-                SSXP.XPTable[tsSkill] = {name = tsSkill, number = level}
-            end
-            SSXP.XPGiven = true
-        elseif roundLevel ~= 0 and SSXP.AppliedSettings.debugMode then
-            SSXP.ShowXP(player,tsSkill,level)
-        end
-    end
-        --[[for _, Perk in pairs(Perks) do
-            if SSXP.VanillaPerks[tostring(Perk)] then
-                --print("The perk is vanilla: "..tostring(SSXP.VanillaPerks[tostring(Perks)]))
-            else
-                print(tostring(Perk).." is missing")
-            end
-        end]]--
-end
-SSXP.ShowXP = function(player,perk,float)
-    if not player:isNPC() and not player:isDead() then
-        if not SSXP.AppliedSettings.debugMode then
-            local HaloText = HaloTextHelper --For optimizing
-            if SSXP.AppliedSettings.refreshMode == 1 then
-                HaloText.addText(player, getText("IGUI_SSXP_TimeMinute"),HaloText.getColorWhite())
-            elseif SSXP.AppliedSettings.refreshMode == 2 then
-                HaloText.addText(player, getText("IGUI_SSXP_TimeTenMinutes"),HaloText.getColorWhite())
-            elseif SSXP.AppliedSettings.refreshMode == 3 then
-                HaloText.addText(player, getText("IGUI_SSXP_TimeHour"),HaloText.getColorWhite())
-            elseif SSXP.AppliedSettings.refreshMode == 4 then
-                HaloText.addText(player, getText("IGUI_SSXP_TimeDay"),HaloText.getColorWhite())
-            end
-            for _, XPT in pairs(SSXP.XPTable) do
-                local showAmountString = ""
-                local roundValue = math.floor(XPT.number*100)/100
-                if SSXP.AppliedSettings.showNumbers then
-                    showAmountString = string.format("%.2f", tostring(roundValue))
-                end
-                if roundValue > 0 and not SSXP.AppliedSettings.OnlyNegative then
-                    HaloText.addTextWithArrow(player, XPT.name .. " +" .. showAmountString, true, HaloText.getColorGreen())
-                elseif roundValue < 0 and not SSXP.AppliedSettings.OnlyPositive then
-                    HaloText.addTextWithArrow(player, XPT.name .. " " .. showAmountString, false, HaloText.getColorRed())
-                end
-            end
-            SSXP.Counted = false
-            SSXP.Timer = 0
-            SSXP.XPGiven = false
-            SSXP.XPTable = {}
-        else
-            local HaloText = HaloTextHelper --For optimizing
-            local showAmountString = ""
-            local roundValue = math.floor(float*100)/100
-            if SSXP.AppliedSettings.showNumbers then
-                showAmountString = string.format("%.2f", tostring(roundValue))
-            end
-            if roundValue > 0 and not SSXP.AppliedSettings.OnlyNegative then
-                HaloText.addTextWithArrow(player, perk .. " +" .. showAmountString, true, HaloText.getColorGreen())
-            elseif roundValue < 0 and not SSXP.AppliedSettings.OnlyPositive then
-                HaloText.addTextWithArrow(player, perk .. " " .. showAmountString, false, HaloText.getColorRed())
-            end
+SSXP.getOptions = function()
+    SSXP.Options = PZAPI.ModOptions:getOptions("2891170430")
+    for _,v in pairs(SSXP.Options:getOption("10").values) do
+        if v["isEnabled"] then
+            local perk = SSXP.PerkTranslation[v["name"]]
+            SSXP.getAllEnabledPerks(perk, v["isEnabled"])
         end
     end
 end
-SSXP.CheckToGiveOPU = function(player) -- OnPlayerUpdate
-    if not player:isNPC() and not player:isDead() and not SSXP.AppliedSettings.debugMode then
-        if SSXP.AppliedSettings.refreshMode == 5 then
-            local Calendar = Calendar.getInstance() -- For optimizing
-            if not SSXP.Counted then
-                local Seconds = Calendar:getTimeInMillis()/1000
-                if SSXP.Timer == 0 then
-                    SSXP.Timer = Seconds + (SSXP.AppliedSettings.refreshModeSeconds+2)
-                    SSXP.Counted = true
-                    --print("Seconds: ",SSXP.AppliedSettings.refreshModeSeconds)
-                end
+SSXP.saveXPEnabledPerks = function(name, value)
+    SSXP.XPPerks[name] = value
+end
+SSXP.getPlayer =  function(player)
+    --Set Player
+    _player = player
+    --First table creation
+    if not SSXP.OptionsTableCreated then
+        SSXP.getOptions()
+        SSXP.OptionsTableCreated = true
+    end
+    if not SSXP.XPTableCreated then
+        for activePerk,v in pairs(SSXP.ActivePerks) do
+            if SSXP.XPPerks[activePerk] == nil then
+                SSXP.saveXPEnabledPerks(activePerk, _player:getXp():getXP(Perks[activePerk]))
             end
-            if (Calendar:getTimeInMillis()/1000) >= SSXP.Timer and SSXP.XPGiven then
-                SSXP.ShowXP(player)
+        end
+        SSXP.XPTableCreated = true
+    end
+end
+SSXP.getAllEnabledPerks = function(name, value)
+    SSXP.ActivePerks[name] = value
+end
+SSXP.showXPHalo = function()
+    local textHalo = nil
+    local arrow = true
+    local r = 0
+    local g = 255
+    local b = 0
+    if not SSXP.XPTableCreated then
+        return
+    end
+    for gainedPerk in pairs(SSXP.GainedPerks) do
+        local getShowType = SSXP.Options:getOption("5").selected            
+        local maths =_player:getXp():getXP(Perks[gainedPerk]) - SSXP.XPPerks[gainedPerk] 
+        local showValue = string.format("%.2f", maths)
+        if SSXP.Options:getOption("2").isEnabled then
+            if maths > 0 and (getShowType == 1 or getShowType == 2) then
+                textHalo = PerkFactory.getPerkName(Perks[gainedPerk]) .. " +" .. showValue .. " "
+            elseif maths < 0 and (getShowType == 1 or getShowType == 3) then
+                textHalo = PerkFactory.getPerkName(Perks[gainedPerk]) .. " (" .. showValue .. ") "
             end
+        else            
+            textHalo = PerkFactory.getPerkName(Perks[gainedPerk]) .. " "
+        end
+        if maths > 0  and (getShowType == 1 or getShowType == 2) then
+            arrow = true
+            r = 255 * SSXP.Options:getOption("6")["color"]["r"]
+            g = 255 * SSXP.Options:getOption("6")["color"]["g"]
+            b = 255 * SSXP.Options:getOption("6")["color"]["b"]
+        elseif maths < 0 and (getShowType == 1 or getShowType == 3) then
+            arrow = false
+            r = 255 * SSXP.Options:getOption("7")["color"]["r"]
+            g = 255 * SSXP.Options:getOption("7")["color"]["g"]
+            b = 255 * SSXP.Options:getOption("7")["color"]["b"]
+        end
+        if maths ~= 0 then
+            if maths < 0 and (getShowType == 1 or getShowType == 2) then 
+                HaloTextHelper.addTextWithArrow(
+                _player, 
+                textHalo, 
+                arrow, 
+                r, 
+                g, 
+                b 
+            )   
+            end
+            if maths > 0 and (getShowType == 1 or getShowType == 3) then 
+                HaloTextHelper.addTextWithArrow(
+                _player, 
+                textHalo, 
+                arrow, 
+                r, 
+                g, 
+                b 
+            )   
+            end         
+            SSXP.saveXPEnabledPerks(gainedPerk, _player:getXp():getXP(Perks[gainedPerk]))
+            SSXP.GainedPerks = {}
         end
     end
 end
-SSXP.CheckToGiveEOM = function() --EveryOneMinute
-    if SSXP.XPGiven and SSXP.AppliedSettings.refreshMode == 1 and not SSXP.AppliedSettings.debugMode then
-        for i = 0,getNumActivePlayers()-1 do
-            local _player = getSpecificPlayer(i)
-            if not _player:isNPC() and not _player:isDead() and _player then
-                SSXP.ShowXP(_player)
-            end
+SSXP.eventOneMinute = function()
+    if not _player:isNPC() and not _player:isDead() and SSXP.Options:getOption("8").selected == 1 then
+        SSXP.showXPHalo()
+    end
+end
+SSXP.eventTenMinutes = function()
+    if not _player:isNPC() and not _player:isDead() and SSXP.Options:getOption("8").selected == 2 then
+        SSXP.showXPHalo()
+    end
+end
+SSXP.eventEveryHours = function()
+    if not _player:isNPC() and not _player:isDead() and SSXP.Options:getOption("8").selected == 3 then
+        SSXP.showXPHalo()
+    end
+end
+SSXP.eventEveryDays = function()
+    if not _player:isNPC() and not _player:isDead() and SSXP.Options:getOption("8").selected == 4 then
+        SSXP.showXPHalo()
+    end
+end
+SSXP.eventPlayerUpdate = function(player)
+    if not SSXP.OptionsTableCreated then
+        return
+    end
+    if not player:isNPC() and not player:isDead() and SSXP.Options:getOption("8").selected == 5 and SSXP.OptionsTableCreated then
+        local Calendar = Calendar.getInstance():getTimeInMillis()
+        if SSXP.Timer == 0 then
+            SSXP.Timer = Calendar
+        end
+        if ((Calendar-SSXP.Timer)/1000) >= SSXP.Options:getOption("9").value then
+            SSXP.showXPHalo()
+            SSXP.Timer  = 0
         end
     end
 end
-SSXP.CheckToGiveETM = function() --EveryTenMinutes
-    if SSXP.XPGiven and SSXP.AppliedSettings.refreshMode == 2 and not SSXP.AppliedSettings.debugMode then
-        for i = 0,getNumActivePlayers()-1 do
-            local _player = getSpecificPlayer(i)
-            if not _player:isNPC() and not _player:isDead() and _player then
-                SSXP.ShowXP(_player)
-            end
-        end
-    end
-end
-SSXP.CheckToGiveEH = function() --EveryHours
-    if SSXP.XPGiven and SSXP.AppliedSettings.refreshMode == 3 and not SSXP.AppliedSettings.debugMode then
-        for i = 0,getNumActivePlayers()-1 do
-            local _player = getSpecificPlayer(i)
-            if not _player:isNPC() and not _player:isDead() and _player then
-                SSXP.ShowXP(_player)
-            end
-        end
-    end
-end
-SSXP.CheckToGiveED = function() --EveryDays
-    if SSXP.XPGiven and SSXP.AppliedSettings.refreshMode == 4 and not SSXP.AppliedSettings.debugMode then
-        for i = 0,getNumActivePlayers()-1 do
-            local _player = getSpecificPlayer(i)
-            if not _player:isNPC() and not _player:isDead() and _player then
-                SSXP.ShowXP(_player)
-            end
-        end
-    end
+SSXP.GainedXPPerks = function(player, perk, level)
+    SSXP.GainedPerks[perk:getId()] = true
 end
 --╭────────────────────────╮
---|         Events         |
+--|        Events          |
 --╰────────────────────────╯
-Events.OnPlayerUpdate.Add(SSXP.CheckToGiveOPU)
-Events.EveryOneMinute.Add(SSXP.CheckToGiveEOM)
-Events.EveryTenMinutes.Add(SSXP.CheckToGiveETM)
-Events.EveryHours.Add(SSXP.CheckToGiveEH)
-Events.EveryDays.Add(SSXP.CheckToGiveED)
-Events.AddXP.Add(SSXP.GainAllXPs)
+Events.EveryOneMinute.Add(SSXP.eventOneMinute)
+Events.EveryTenMinutes.Add(SSXP.eventTenMinutes)
+Events.EveryHours.Add(SSXP.eventEveryHours)
+Events.EveryDays.Add(SSXP.eventEveryDays)
+Events.OnPlayerUpdate.Add(SSXP.eventPlayerUpdate)
+Events.OnPlayerUpdate.Add(SSXP.getPlayer)
+Events.AddXP.Add(SSXP.GainedXPPerks)
+Events.OnInitWorld.Add(SSXP.getOptions)

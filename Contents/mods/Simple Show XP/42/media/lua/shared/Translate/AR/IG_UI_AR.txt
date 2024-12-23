@@ -1,4 +1,4 @@
-UI_ES = {
+UI_AR = {
     --Unsed
     IGUI_SSXP_debugMode = "Modo Debug",
     IGUI_SSXP_debugMode_tooltip = "Si esta activado, mostrara toda la XP ganada y perdida sin sumarlas y sin ningun temporizador.",

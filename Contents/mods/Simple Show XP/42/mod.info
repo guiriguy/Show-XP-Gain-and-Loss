@@ -1,4 +1,5 @@
-name=Simple Show XP
-id=SimpleShowXP
+name=[Dev] Simple Show XP
+id=[Dev] SimpleShowXP
 description=This is a simple mod that show's XP Gain and Loss, based on the Show Skill XP Gain.
 poster=poster.png
+icon=icon.png
