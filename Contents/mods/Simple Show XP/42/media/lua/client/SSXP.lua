@@ -16,9 +16,11 @@ _player = nil
 SSXP.getOptions = function()
     SSXP.Options = PZAPI.ModOptions:getOptions("2891170430")
     for _,v in pairs(SSXP.Options:getOption("10").values) do
-        if v["isEnabled"] then
+        if v["value"] then
             local perk = SSXP.PerkTranslation[v["name"]]
-            SSXP.getAllEnabledPerks(perk, v["isEnabled"])
+            --print(v["value"])
+            --print(perk)
+            SSXP.getAllEnabledPerks(perk, v["value"])
         end
     end
 end
@@ -135,12 +137,16 @@ SSXP.eventPlayerUpdate = function(player)
         end
         if ((Calendar-SSXP.Timer)/1000) >= SSXP.Options:getOption("9").value then
             SSXP.showXPHalo()
+            SSXP.getOptions()
             SSXP.Timer  = 0
         end
     end
 end
 SSXP.GainedXPPerks = function(player, perk, level)
-    SSXP.GainedPerks[perk:getId()] = true
+    local perk = perk:getId()
+    if SSXP.ActivePerks[perk] then
+        SSXP.GainedPerks[perk] = true
+    end
 end
 --╭────────────────────────╮
 --|        Events          |
